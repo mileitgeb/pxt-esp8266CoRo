@@ -66,7 +66,6 @@ namespace ESP8266_IoT {
             rx,
             baudrate
         )
-        sendAT("AT+RESTORE", 1000) // restore to factory settings
         sendAT("AT+CWMODE=1") // set to STA mode
         sendAT("AT+RST", 1000) // reset
         basic.pause(100)
@@ -82,7 +81,7 @@ namespace ESP8266_IoT {
         wifi_connected = false
         thingspeak_connected = false
         kitsiot_connected = false
-        sendAT("AT+CWJAP=\"" + ssid + "\",\"" + pw + "\"", 0) // connect to Wifi router
+        sendAT("AT+CWJAP=\"" + ssid + "\",\"" + pw + "\"") // connect to Wifi router
         wifi_connected = waitResponse()
         basic.pause(100)
     }
@@ -204,7 +203,7 @@ namespace ESP8266_IoT {
         if (wifi_connected && thingspeak_connected == false) {
             userToken_def = userToken
             topic_def = topic
-            sendAT("AT+CIPSTART=\"TCP\",\"139.159.161.57\",5555", 0) // connect to website server
+            sendAT("AT+CIPSTART=\"TCP\",\"139.159.161.57\",5555") // connect to website server
             let text_one = "{\"topic\":\"" + topic + "\",\"userToken\":\"" + userToken + "\",\"op\":\"init\"}"
             sendAT("AT+CIPSEND=" + (text_one.length + 2),0)
             sendAT(text_one, 0)
