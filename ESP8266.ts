@@ -4,9 +4,9 @@
 //% color=#0fbc11 icon="\uf1eb" weight=90
 namespace ESP8266_IoT {
 
-    let wifi_connected: boolean = false
+    let wifi_connected: boolean = true
     let thingspeak_connected: boolean = false
-    let kitsiot_connected: boolean = false
+    let kitsiot_connected: boolean = true
     let last_upload_successful: boolean = false
     let userToken_def: string = ""
     let topic_def: string = ""
