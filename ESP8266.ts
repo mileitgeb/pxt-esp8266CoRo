@@ -200,7 +200,6 @@ namespace ESP8266_IoT {
     //% subcategory=KidsIot
     //% blockId=initkitiot block="Connect KidsIot with userToken: %userToken Topic: %topic"
     export function connectKidsiot(userToken: string, topic: string): void {
-        if (wifi_connected && thingspeak_connected == false) {
             userToken_def = userToken
             topic_def = topic
             sendAT("AT+CIPSTART=\"TCP\",\"139.159.161.57\",5555") // connect to website server
@@ -208,7 +207,6 @@ namespace ESP8266_IoT {
             sendAT("AT+CIPSEND=" + (text_one.length + 2),0)
             sendAT(text_one, 0)
             kitsiot_connected = waitResponse()
-        }
     }
     /**
     * upload data to kitsiot
@@ -216,12 +214,10 @@ namespace ESP8266_IoT {
     //% subcategory=KidsIot
     //% blockId=uploadkitsiot block="Upload data %data to kidsiot"
     export function uploadKidsiot(data: number): void {
-        if (kitsiot_connected) {
             data = Math.floor(data)
             let text_one = "{\"topic\":\"" + topic_def + "\",\"userToken\":\"" + userToken_def + "\",\"op\":\"up\",\"data\":\"" + data + "\"}"
             sendAT("AT+CIPSEND=" + (text_one.length),100)
             sendAT(text_one,100)
-        }
     }
     /**
     * disconnect from kitsiot
