@@ -82,7 +82,7 @@ namespace ESP8266_IoT {
         thingspeak_connected = false
         kitsiot_connected = false
         sendAT("AT+CWJAP=\"" + ssid + "\",\"" + pw + "\"") // connect to Wifi router
-        wifi_connected = waitResponse()
+        wifi_connected = true
         basic.pause(100)
     }
     /**
