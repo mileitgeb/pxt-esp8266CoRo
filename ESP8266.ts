@@ -219,8 +219,8 @@ namespace ESP8266_IoT {
         if (kitsiot_connected) {
             data = Math.floor(data)
             let text_one = "{\"topic\":\"" + topic_def + "\",\"userToken\":\"" + userToken_def + "\",\"op\":\"up\",\"data\":\"" + data + "\"}"
-            sendAT("AT+CIPSEND=" + (text_one.length + 2),0)
-            sendAT(text_one, 0)
+            sendAT("AT+CIPSEND=" + (text_one.length + 2))
+            sendAT(text_one)
         }
     }
     /**
@@ -231,8 +231,8 @@ namespace ESP8266_IoT {
     export function disconnectKidsiot(): void {
         if (kitsiot_connected) {
             let text_one = "{\"topic\":\"" + topic_def + "\",\"userToken\":\"" + userToken_def + "\",\"op\":\"close\"}"
-            sendAT("AT+CIPSEND=" + (text_one.length + 2),0)
-            sendAT(text_one, 0)
+            sendAT("AT+CIPSEND=" + (text_one.length + 2))
+            sendAT(text_one)
             kitsiot_connected = !waitResponse()
         }
     }
